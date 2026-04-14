@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaidya Wellness — Ancient Roots, Infinite Healing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #1A2E1A;
+  --deep-forest: #0F1D0F;
+  --jade: #2D5A27;
+  --sage: #5C7A4E;
+  --moss: #7D9E6B;
+  --gold: #D4A843;
+  --amber: #C88B2A;
+  --saffron: #E07820;
+  --cream: #F8F3E8;
+  --warm: #FBF7EE;
+  --parchment: #EDE5D0;
+  --terracotta: #B85C38;
+  --copper: #9B6B3A;
+  --muted: #6B7355;
+  --light-sage: #C8D9B8;
+  --soft-gold: #F0DCA0;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--warm);
+  color: var(--forest);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+/* GRAIN OVERLAY */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9990;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 500;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s;
+}
+nav.scrolled {
+  background: rgba(15,29,15,0.95);
+  backdrop-filter: blur(16px);
+  padding: 0.75rem 5%;
+  border-bottom: 1px solid rgba(212,168,67,0.15);
+}
+.logo-wrap { display:flex; align-items:center; gap:0.8rem; }
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items:center; justify-content:center;
+  font-size: 1rem;
+}
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--cream);
+  letter-spacing: 0.03em;
+}
+.logo-text span { color: var(--gold); }
+nav ul {
+  list-style:none;
+  display:flex; gap:2rem; align-items:center;
+}
+nav ul a {
+  text-decoration:none;
+  color: rgba(248,243,232,0.7);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+nav ul a:hover { color: var(--gold); }
+.nav-book {
+  background: linear-gradient(135deg, var(--gold), var(--amber)) !important;
+  color: var(--deep-forest) !important;
+  padding: 0.55rem 1.4rem !important;
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  transition: transform 0.3s, box-shadow 0.3s !important;
+}
+.nav-book:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,168,67,0.3) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: var(--deep-forest);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Animated leaf particles */
+.leaves-bg {
+  position: absolute; inset:0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.leaf {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0.06;
+  animation: floatLeaf linear infinite;
+}
+@keyframes floatLeaf {
+  0% { transform: translateY(110vh) rotate(0deg); opacity:0; }
+  10% { opacity: 0.08; }
+  90% { opacity: 0.08; }
+  100% { transform: translateY(-10vh) rotate(720deg); opacity:0; }
+}
+
+/* Radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 80vw; height: 80vw;
+  background: radial-gradient(ellipse, rgba(45,90,39,0.35) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(ellipse, rgba(212,168,67,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 8%;
+  max-width: 800px;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: rgba(212,168,67,0.1);
+  border: 1px solid rgba(212,168,67,0.2);
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s 0.2s both;
+}
+.hero-eyebrow span {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.hero-eyebrow::before { content:'🌿'; font-size:0.8rem; }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  margin-bottom: 1.8rem;
+  animation: fadeUp 0.8s 0.35s both;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero h1 .devanagari {
+  display: block;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 0.45em;
+  color: rgba(212,168,67,0.5);
+  letter-spacing: 0.05em;
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: rgba(248,243,232,0.55);
+  line-height: 1.9;
+  max-width: 520px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  animation: fadeUp 0.8s 0.5s both;
+}
+
+.hero-actions {
+  display: flex; gap: 1.2rem; flex-wrap:wrap;
+  animation: fadeUp 0.8s 0.65s both;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: var(--deep-forest);
+  padding: 0.9rem 2.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(212,168,67,0.35); }
+.btn-ghost {
+  border: 1px solid rgba(248,243,232,0.2);
+  color: rgba(248,243,232,0.75);
+  padding: 0.9rem 2.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* Hero right: floating card */
+.hero-visual {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  animation: fadeUp 1s 0.8s both;
+}
+.mandala-container {
+  width: 400px; height: 400px;
+  position: relative;
+  display: flex; align-items:center; justify-content:center;
+}
+.mandala-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(212,168,67,0.15);
+}
+.mandala-ring:nth-child(1) { width:100%; height:100%; animation: spinRing 60s linear infinite; }
+.mandala-ring:nth-child(2) { width:75%; height:75%; animation: spinRing 40s linear infinite reverse; border-color: rgba(212,168,67,0.2); }
+.mandala-ring:nth-child(3) { width:50%; height:50%; animation: spinRing 25s linear infinite; border-color: rgba(212,168,67,0.3); }
+@keyframes spinRing { to { transform: rotate(360deg); } }
+
+/* Dots on rings */
+.mandala-ring::before, .mandala-ring::after {
+  content: '◈';
+  position: absolute;
+  color: var(--gold);
+  font-size: 0.5rem;
+  top: -4px; left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.6;
+}
+.mandala-ring::after { top: auto; bottom: -4px; }
+
+.mandala-core {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,168,67,0.15), rgba(45,90,39,0.3));
+  border: 1px solid rgba(212,168,67,0.3);
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  gap: 0.3rem;
+  box-shadow: 0 0 60px rgba(212,168,67,0.1), inset 0 0 40px rgba(45,90,39,0.2);
+}
+.om-symbol {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 3.5rem;
+  color: var(--gold);
+  line-height: 1;
+  animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.7;transform:scale(1);} 50%{opacity:1;transform:scale(1.05);} }
+.mandala-subtitle {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: rgba(212,168,67,0.5);
+  text-transform: uppercase;
+}
+
+/* Floating stats */
+.float-card {
+  position: absolute;
+  background: rgba(15,29,15,0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212,168,67,0.2);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  animation: float 6s ease-in-out infinite;
+}
+.float-card:nth-child(5) { bottom: 5%; right: 0; animation-delay: -2s; }
+.float-card:nth-child(6) { top: 10%; left: 0; animation-delay: -4s; }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+.float-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  display: block;
+}
+.float-label { font-size: 0.65rem; color: rgba(248,243,232,0.45); text-transform:uppercase; letter-spacing:0.1em; }
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem; left: 8%;
+  display: flex; align-items:center; gap:0.8rem;
+  animation: fadeUp 0.8s 1.2s both;
+}
+.scroll-line {
+  width: 40px; height: 1px;
+  background: rgba(212,168,67,0.4);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  height: 100%; width: 50%;
+  background: var(--gold);
+  animation: scrollAnim 1.5s ease-in-out infinite;
+}
+@keyframes scrollAnim { 0%{left:-50%;} 100%{left:150%;} }
+.scroll-text { font-size: 0.65rem; letter-spacing:0.2em; color:rgba(248,243,232,0.35); text-transform:uppercase; }
+
+/* ─── TICKER ─── */
+.ticker {
+  background: var(--gold);
+  padding: 0.85rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 30s linear infinite;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--deep-forest);
+  font-weight: 500;
+}
+.ticker-dot { margin: 0 2.5rem; opacity: 0.4; }
+@keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+/* ─── SECTIONS BASE ─── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+.section-label::before { content:''; width:20px; height:1px; background:var(--sage); }
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: var(--forest);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+.section-heading em { font-style: italic; color: var(--jade); }
+.section-heading.light { color: var(--cream); }
+.section-heading.light em { color: var(--gold); }
+
+/* ─── AYURVEDIC KNOWLEDGE ─── */
+.knowledge {
+  padding: 7rem 8%;
+  background: var(--warm);
+  position: relative;
+}
+.knowledge::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--light-sage), transparent);
+}
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+.knowledge-sticky { position: sticky; top: 7rem; }
+.knowledge-sticky p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.9;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+.dosha-pills {
+  display: flex; flex-direction:column; gap: 0.8rem;
+  margin-top: 2rem;
+}
+.dosha-pill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+}
+.dosha-pill:hover { transform: translateX(8px); }
+.dp-vata { background: rgba(100,130,200,0.08); border-color: rgba(100,130,200,0.2); }
+.dp-pitta { background: rgba(224,120,32,0.08); border-color: rgba(224,120,32,0.2); }
+.dp-kapha { background: rgba(45,90,39,0.08); border-color: rgba(45,90,39,0.2); }
+.dosha-icon { font-size: 1.4rem; }
+.dosha-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--forest);
+}
+.dosha-desc { font-size: 0.72rem; color: var(--muted); }
+
+.knowledge-articles {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(92,122,78,0.1);
+}
+.k-article {
+  background: var(--warm);
+  padding: 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.k-article:hover { background: var(--parchment); }
+.k-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: rgba(92,122,78,0.2);
+  font-weight: 700;
+  line-height:1;
+}
+.k-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--forest);
+  margin-bottom: 0.4rem;
+}
+.k-content p { font-size:0.8rem; color:var(--muted); line-height:1.7; font-weight:300; }
+.k-tag {
+  font-size: 0.62rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color: var(--sage);
+  background: rgba(92,122,78,0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+/* ─── PRAKRITI CONSULTATION ─── */
+.prakriti {
+  background: var(--forest);
+  padding: 7rem 8%;
+  position: relative;
+  overflow: hidden;
+}
+.prakriti-bg-text {
+  position: absolute;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 20rem;
+  color: rgba(212,168,67,0.03);
+  top: 50%; right: -2%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  line-height:1;
+}
+.prakriti-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  position: relative; z-index:1;
+}
+.prakriti-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.p-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(212,168,67,0.08);
+  transition: all 0.3s;
+}
+.p-step:hover .p-num { background: var(--gold); color: var(--deep-forest); }
+.p-num {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,168,67,0.3);
+  display: flex;
+  align-items:center; justify-content:center;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  transition: all 0.3s;
+  flex-shrink:0;
+}
+.p-step h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 0.4rem;
+}
+.p-step p { font-size:0.82rem; color:rgba(248,243,232,0.45); line-height:1.8; font-weight:300; }
+
+.consult-card {
+  background: rgba(248,243,232,0.04);
+  border: 1px solid rgba(212,168,67,0.12);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: sticky;
+  top: 7rem;
+}
+.consult-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.consult-card > p { font-size:0.82rem; color:rgba(248,243,232,0.45); line-height:1.7; margin-bottom:2rem; font-weight:300; }
+.consult-plans { display:flex; flex-direction:column; gap:1px; background:rgba(212,168,67,0.08); margin-bottom:1.5rem; }
+.c-plan {
+  background: rgba(15,29,15,0.6);
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.c-plan:hover { background: rgba(212,168,67,0.08); }
+.c-plan.featured { background: rgba(212,168,67,0.1); }
+.c-plan-name { font-size:0.85rem; color: var(--cream); font-weight:500; }
+.c-plan-sub { font-size:0.7rem; color:rgba(248,243,232,0.35); }
+.c-plan-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+.btn-book {
+  display: block;
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color: var(--deep-forest);
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align:center;
+  text-decoration:none;
+}
+.btn-book:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(212,168,67,0.3); }
+
+/* ─── ASTROLOGY ─── */
+.astrology {
+  padding: 7rem 8%;
+  background: var(--deep-forest);
+  position: relative;
+  overflow: hidden;
+}
+.stars-bg {
+  position: absolute; inset:0;
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, rgba(212,168,67,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 50%, rgba(248,243,232,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, rgba(212,168,67,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 70%, rgba(248,243,232,0.15) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 85%, rgba(212,168,67,0.25) 0%, transparent 100%),
+    radial-gradient(2px 2px at 20% 80%, rgba(212,168,67,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 30%, rgba(248,243,232,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 45%, rgba(212,168,67,0.15) 0%, transparent 100%);
+  pointer-events: none;
+}
+.astro-inner {
+  position: relative; z-index:1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.astro-visual {
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+.zodiac-wheel {
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,168,67,0.2);
+  position: relative;
+  display: flex; align-items:center; justify-content:center;
+  animation: spinRing 80s linear infinite;
+}
+.zodiac-signs {
+  position: absolute; inset: -24px;
+  display: flex; align-items:center; justify-content:center;
+}
+.z-sign {
+  position: absolute;
+  font-size: 1.2rem;
+  color: rgba(212,168,67,0.5);
+  transform-origin: center;
+}
+.zodiac-center {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,168,67,0.15), transparent);
+  border: 1px solid rgba(212,168,67,0.25);
+  display: flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  animation: spinRing 80s linear infinite reverse;
+}
+.zodiac-center span { font-size:2.2rem; }
+.zodiac-center small { font-size:0.5rem; letter-spacing:0.2em; color:rgba(212,168,67,0.4); text-transform:uppercase; }
+
+.astro-content .section-label { color: var(--gold); }
+.astro-content .section-label::before { background: var(--gold); }
+
+.astro-services {
+  display: flex; flex-direction:column; gap:1px;
+  background: rgba(212,168,67,0.06);
+  margin: 2rem 0;
+}
+.a-service {
+  background: rgba(15,29,15,0.5);
+  padding: 1.3rem 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+.a-service:hover { background: rgba(212,168,67,0.08); }
+.a-icon { font-size:1.3rem; width:40px; text-align:center; }
+.a-name { font-size:0.88rem; color:var(--cream); font-weight:500; }
+.a-sub { font-size:0.7rem; color:rgba(248,243,232,0.35); }
+.a-free {
+  margin-left: auto;
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color: var(--jade);
+  background: rgba(45,90,39,0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius:10px;
+  white-space:nowrap;
+}
+
+/* ─── CAREER ─── */
+.career {
+  padding: 7rem 8%;
+  background: var(--cream);
+}
+.career-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.career-header .section-label { justify-content:center; }
+.career-header .section-label::before { display:none; }
+.career-header p {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size:0.92rem;
+  color: var(--muted);
+  line-height:1.8;
+  font-weight:300;
+}
+
+.career-tracks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: rgba(92,122,78,0.12);
+  margin-bottom: 4rem;
+}
+.track {
+  background: var(--cream);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.track::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--jade), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.track:hover::before { transform: scaleX(1); }
+.track:hover { background: var(--warm); }
+.track-icon { font-size: 2.2rem; margin-bottom: 1.2rem; display:block; }
+.track h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--forest);
+  margin-bottom: 0.7rem;
+}
+.track p { font-size:0.82rem; color:var(--muted); line-height:1.8; font-weight:300; margin-bottom:1.5rem; }
+.track-tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.ttag {
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  color: var(--sage);
+  background: rgba(92,122,78,0.08);
+  padding: 0.2rem 0.6rem;
+  border-radius:10px;
+  text-transform:uppercase;
+}
+.career-cta-row {
+  text-align: center;
+}
+
+/* ─── MEDICAL TOURISM ─── */
+.tourism {
+  background: var(--forest);
+  padding: 7rem 8%;
+  position: relative;
+  overflow: hidden;
+}
+.tourism::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 0% 100%, rgba(212,168,67,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 0%, rgba(45,90,39,0.2) 0%, transparent 50%);
+  pointer-events:none;
+}
+.tourism-inner {
+  position: relative; z-index:1;
+}
+.tourism-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+.tourism-top p { font-size:0.9rem; color:rgba(248,243,232,0.5); line-height:1.9; font-weight:300; align-self:end; }
+.tourism-packages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  background: rgba(212,168,67,0.06);
+}
+.t-pkg {
+  background: rgba(15,29,15,0.6);
+  padding: 2.5rem 2rem;
+  border-top: 2px solid transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.t-pkg:hover { background: rgba(212,168,67,0.06); border-top-color: var(--gold); }
+.t-pkg-icon { font-size:2rem; margin-bottom:1.2rem; display:block; }
+.t-pkg h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--cream);
+  margin-bottom: 0.6rem;
+}
+.t-pkg p { font-size:0.8rem; color:rgba(248,243,232,0.4); line-height:1.8; font-weight:300; margin-bottom:1.2rem; }
+.t-duration {
+  display: inline-block;
+  font-size:0.65rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(212,168,67,0.3);
+  padding: 0.3rem 0.7rem;
+  border-radius:10px;
+}
+
+.tourism-info {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(212,168,67,0.06);
+}
+.t-info-item {
+  background: rgba(15,29,15,0.4);
+  padding: 1.8rem 1.5rem;
+  text-align:center;
+}
+.t-info-icon { font-size:1.5rem; margin-bottom:0.7rem; display:block; }
+.t-info-item h4 { font-size:0.8rem; color:var(--cream); margin-bottom:0.3rem; font-weight:500; }
+.t-info-item p { font-size:0.72rem; color:rgba(248,243,232,0.35); font-weight:300; }
+
+/* ─── PRODUCTS (COMING SOON) ─── */
+.products {
+  padding: 7rem 8%;
+  background: var(--parchment);
+  text-align:center;
+}
+.products-inner { max-width:700px; margin:0 auto; }
+.coming-soon-badge {
+  display: inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  background: rgba(212,168,67,0.15);
+  border: 1px solid rgba(212,168,67,0.3);
+  border-radius:20px;
+  padding:0.4rem 1rem;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color: var(--amber);
+  margin-bottom:2rem;
+}
+.products-preview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 3rem 0;
+  opacity: 0.5;
+  filter: blur(1px);
+}
+.prod-ghost {
+  background: rgba(92,122,78,0.1);
+  border-radius:12px;
+  aspect-ratio: 3/4;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:0.5rem;
+}
+.prod-ghost span { font-size:2rem; }
+.prod-ghost small { font-size:0.68rem; color:var(--muted); }
+.notify-form {
+  display:flex; gap:0; max-width:380px; margin:2rem auto 0;
+}
+.notify-form input {
+  flex:1;
+  padding:0.9rem 1.3rem;
+  border:1px solid rgba(92,122,78,0.2);
+  border-right:none;
+  background:var(--warm);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.85rem;
+  color:var(--forest);
+  border-radius:6px 0 0 6px;
+  outline:none;
+}
+.notify-form button {
+  background: var(--jade);
+  color:white;
+  border:none;
+  padding:0.9rem 1.5rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:0.75rem;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  border-radius:0 6px 6px 0;
+  transition:background 0.3s;
+}
+.notify-form button:hover { background: var(--forest); }
+
+/* ─── BLOG ─── */
+.blog {
+  padding: 7rem 8%;
+  background: var(--warm);
+}
+.blog-header {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-bottom:3.5rem;
+}
+.blog-cats {
+  display:flex; gap:0.5rem; flex-wrap:wrap;
+  margin-top:1rem;
+}
+.blog-cat-btn {
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:0.3rem 0.9rem;
+  border-radius:14px;
+  cursor:pointer;
+  transition:all 0.3s;
+  border:1px solid rgba(92,122,78,0.2);
+  color:var(--muted);
+  background:transparent;
+  font-family:'DM Sans',sans-serif;
+}
+.blog-cat-btn.active, .blog-cat-btn:hover {
+  background: var(--jade);
+  color:white;
+  border-color:var(--jade);
+}
+
+.blog-layout {
+  display:grid;
+  grid-template-columns: 1.8fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5px;
+  background: rgba(92,122,78,0.1);
+}
+.b-card {
+  background: var(--warm);
+  padding: 2.5rem;
+  transition: background 0.3s;
+  cursor:pointer;
+}
+.b-card:hover { background: var(--parchment); }
+.b-card.main { grid-row: 1 / 3; }
+.b-cat {
+  font-size:0.62rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--saffron);
+  font-weight:600;
+  margin-bottom:0.8rem;
+  display:block;
+}
+.b-card h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;
+  color:var(--forest);
+  line-height:1.35;
+  margin-bottom:0.7rem;
+}
+.b-card.main h3 { font-size:2rem; margin-bottom:1rem; }
+.b-card p { font-size:0.82rem; color:var(--muted); line-height:1.8; font-weight:300; }
+.b-meta {
+  margin-top:1.5rem;
+  display:flex; align-items:center; gap:0.8rem;
+  font-size:0.7rem;
+  color:var(--muted);
+}
+.b-meta .dot { width:3px; height:3px; border-radius:50%; background:var(--light-sage); }
+.b-read-more {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  font-size:0.75rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--jade);
+  font-weight:500;
+  margin-top:1.5rem;
+  text-decoration:none;
+  transition:gap 0.3s;
+}
+.b-read-more:hover { gap:0.9rem; }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials {
+  background: var(--forest);
+  padding: 7rem 8%;
+}
+.testimonials-header { margin-bottom:4rem; }
+.t-scroller {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:1.5px;
+  background: rgba(212,168,67,0.06);
+}
+.t-card {
+  background: rgba(15,29,15,0.5);
+  padding:2.5rem;
+  transition: background 0.3s;
+}
+.t-card:hover { background: rgba(212,168,67,0.05); }
+.t-stars { color:var(--gold); font-size:0.8rem; letter-spacing:0.1em; margin-bottom:1.2rem; }
+.t-card blockquote {
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:1rem;
+  color:rgba(248,243,232,0.75);
+  line-height:1.75;
+  margin-bottom:1.8rem;
+}
+.t-author { display:flex; align-items:center; gap:1rem; }
+.t-avatar {
+  width:42px; height:42px; border-radius:50%;
+  background: linear-gradient(135deg, var(--jade), var(--gold));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:1rem; color:white; font-weight:600;
+  flex-shrink:0;
+}
+.t-info strong { display:block; font-size:0.82rem; color:var(--cream); }
+.t-info span { font-size:0.7rem; color:rgba(248,243,232,0.35); }
+
+/* ─── NEWSLETTER ─── */
+.newsletter {
+  background: linear-gradient(135deg, var(--jade) 0%, var(--forest) 60%, var(--deep-forest) 100%);
+  padding: 6rem 8%;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.newsletter::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,168,67,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.newsletter h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:400;
+  color:var(--cream);
+  margin-bottom:0.8rem;
+  position:relative;z-index:1;
+}
+.newsletter p { color:rgba(248,243,232,0.55); font-size:0.9rem; margin-bottom:2.5rem; font-weight:300; position:relative;z-index:1; }
+.nl-form {
+  display:flex; gap:0; max-width:440px; margin:0 auto;
+  position:relative;z-index:1;
+}
+.nl-form input {
+  flex:1; padding:1rem 1.5rem;
+  border:1px solid rgba(212,168,67,0.25); border-right:none;
+  background:rgba(248,243,232,0.07);
+  color:var(--cream); font-family:'DM Sans',sans-serif; font-size:0.85rem;
+  outline:none; border-radius:6px 0 0 6px;
+}
+.nl-form input::placeholder { color:rgba(248,243,232,0.3); }
+.nl-form button {
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  color:var(--deep-forest); border:none;
+  padding:1rem 1.8rem;
+  font-family:'DM Sans',sans-serif; font-size:0.75rem; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase; cursor:pointer;
+  border-radius:0 6px 6px 0; transition:all 0.3s;
+}
+.nl-form button:hover { box-shadow:0 8px 24px rgba(212,168,67,0.35); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--deep-forest);
+  padding: 5rem 8% 2.5rem;
+  border-top: 1px solid rgba(212,168,67,0.08);
+}
+.footer-top {
+  display:grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap:4rem;
+  margin-bottom:4rem;
+}
+.f-brand .logo-wrap { margin-bottom:1.2rem; }
+.f-brand p { font-size:0.8rem; color:rgba(248,243,232,0.35); line-height:1.8; font-weight:300; max-width:260px; }
+.f-brand .socials { display:flex; gap:0.7rem; margin-top:1.5rem; }
+.social-btn {
+  width:34px; height:34px; border-radius:50%;
+  border:1px solid rgba(212,168,67,0.15);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.75rem; color:rgba(248,243,232,0.35);
+  text-decoration:none; transition:all 0.3s;
+}
+.social-btn:hover { border-color:var(--gold); color:var(--gold); }
+.f-col h4 {
+  font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:1.5rem;
+}
+.f-col ul { list-style:none; display:flex; flex-direction:column; gap:0.7rem; }
+.f-col ul a {
+  color:rgba(248,243,232,0.35); text-decoration:none;
+  font-size:0.8rem; font-weight:300; transition:color 0.3s;
+}
+.f-col ul a:hover { color:var(--cream); }
+footer hr { border:none; border-top:1px solid rgba(212,168,67,0.06); margin-bottom:2rem; }
+.footer-bottom {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:0.72rem; color:rgba(248,243,232,0.2);
+}
+.footer-bottom a { color:rgba(212,168,67,0.4); text-decoration:none; }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width:1000px) {
+  .hero-visual { display:none; }
+  .knowledge-grid { grid-template-columns:1fr; gap:3rem; }
+  .prakriti-inner { grid-template-columns:1fr; gap:3rem; }
+  .astro-inner { grid-template-columns:1fr; gap:3rem; }
+  .astro-visual { display:none; }
+  .career-tracks { grid-template-columns:1fr 1fr; }
+  .tourism-top { grid-template-columns:1fr; gap:2rem; }
+  .tourism-packages { grid-template-columns:1fr; }
+  .tourism-info { grid-template-columns:1fr 1fr; }
+  .blog-layout { grid-template-columns:1fr; }
+  .b-card.main { grid-row: auto; }
+  .t-scroller { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr 1fr; gap:2.5rem; }
+  nav ul { display:none; }
+  .products-preview { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:600px) {
+  .career-tracks { grid-template-columns:1fr; }
+  .tourism-info { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr; }
+  .products-preview { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="logo-wrap">
+    <div class="logo-icon">🌿</div>
+    <div class="logo-text">Vaidya<span>Wellness</span></div>
+  </div>
+  <ul>
+    <li><a href="#knowledge">Knowledge</a></li>
+    <li><a href="#prakriti">Consultation</a></li>
+    <li><a href="#astrology">Astrology</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#tourism">Medical Tourism</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#prakriti" class="nav-book">Book Session</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="leaves-bg" id="leavesBg"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span>Ancient Ayurveda · Modern Guidance</span>
+    </div>
+    <h1>
+      <span class="devanagari">आरोग्यं परमं भाग्यम्</span>
+      Healing from<br><em>Nature's Wisdom</em>
+    </h1>
+    <p class="hero-desc">A sanctuary where ancient Ayurvedic knowledge meets compassionate care — offering prakriti-based consultations, Jyotish guidance, student mentorship, and pathways to wellness for patients worldwide.</p>
+    <div class="hero-actions">
+      <a href="#prakriti" class="btn-gold">Book Consultation</a>
+      <a href="#knowledge" class="btn-ghost">Explore Knowledge</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="mandala-container">
+      <div class="mandala-ring"></div>
+      <div class="mandala-ring"></div>
+      <div class="mandala-ring"></div>
+      <div class="float-card">
+        <span class="float-num">1800+</span>
+        <span class="float-label">Patients Guided</span>
+      </div>
+      <div class="float-card">
+        <span class="float-num">12 Yrs</span>
+        <span class="float-label">Clinical Experience</span>
+      </div>
+      <div class="mandala-core">
+        <div class="om-symbol">ॐ</div>
+        <div class="mandala-subtitle">Vaidya</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    🌿 Ayurvedic Awareness <span class="ticker-dot">✦</span>
+    🪷 Prakriti Consultations <span class="ticker-dot">✦</span>
+    ⭐ Free Astrology Guidance <span class="ticker-dot">✦</span>
+    🎓 Career Counselling <span class="ticker-dot">✦</span>
+    ✈️ Medical Tourism for Foreigners <span class="ticker-dot">✦</span>
+    📖 Awareness Articles <span class="ticker-dot">✦</span>
+    🧴 Herbal Products Coming Soon <span class="ticker-dot">✦</span>
+    🌿 Ayurvedic Awareness <span class="ticker-dot">✦</span>
+    🪷 Prakriti Consultations <span class="ticker-dot">✦</span>
+    ⭐ Free Astrology Guidance <span class="ticker-dot">✦</span>
+    🎓 Career Counselling <span class="ticker-dot">✦</span>
+    ✈️ Medical Tourism for Foreigners <span class="ticker-dot">✦</span>
+    📖 Awareness Articles <span class="ticker-dot">✦</span>
+    🧴 Herbal Products Coming Soon <span class="ticker-dot">✦</span>
+  </div>
+</div>
+
+<!-- AYURVEDIC KNOWLEDGE -->
+<section class="knowledge" id="knowledge">
+  <div class="knowledge-grid">
+    <div class="knowledge-sticky">
+      <div class="section-label">Patient Awareness</div>
+      <h2 class="section-heading">Your Guide to<br><em>Ayurvedic Living</em></h2>
+      <p>We believe every patient deserves to understand their own body deeply. Explore our library of knowledge — from the basics of the three doshas to seasonal routines and herbal wisdom.</p>
+      <div class="dosha-pills">
+        <div class="dosha-pill dp-vata">
+          <span class="dosha-icon">🌬️</span>
+          <div>
+            <div class="dosha-name">Vata Dosha</div>
+            <div class="dosha-desc">Air & Space · Movement · Creativity</div>
+          </div>
+        </div>
+        <div class="dosha-pill dp-pitta">
+          <span class="dosha-icon">🔥</span>
+          <div>
+            <div class="dosha-name">Pitta Dosha</div>
+            <div class="dosha-desc">Fire & Water · Transformation · Intelligence</div>
+          </div>
+        </div>
+        <div class="dosha-pill dp-kapha">
+          <span class="dosha-icon">🌊</span>
+          <div>
+            <div class="dosha-name">Kapha Dosha</div>
+            <div class="dosha-desc">Earth & Water · Stability · Nourishment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="knowledge-articles">
+      <div class="k-article">
+        <div class="k-num">01</div>
+        <div class="k-content">
+          <h3>Understanding Your Prakriti: The Blueprint of Your Health</h3>
+          <p>Your Ayurvedic constitution is determined at birth and influences everything — digestion, sleep, emotions, and disease tendency. Learn what it means and how to use it.</p>
+        </div>
+        <div class="k-tag">Fundamentals</div>
+      </div>
+      <div class="k-article">
+        <div class="k-num">02</div>
+        <div class="k-content">
+          <h3>Dinacharya: Why Daily Routine is Your Greatest Medicine</h3>
+          <p>The Ayurvedic morning routine — tongue scraping, oil pulling, self-massage — creates a foundation of health that no single herb or treatment can replace.</p>
+        </div>
+        <div class="k-tag">Daily Practice</div>
+      </div>
+      <div class="k-article">
+        <div class="k-num">03</div>
+        <div class="k-content">
+          <h3>Agni: The Sacred Fire of Digestion</h3>
+          <p>In Ayurveda, almost all disease begins with impaired Agni — digestive fire. Discover how to assess and restore your digestive capacity naturally.</p>
+        </div>
+        <div class="k-tag">Digestion</div>
+      </div>
+      <div class="k-article">
+        <div class="k-num">04</div>
+        <div class="k-content">
+          <h3>Ritucharya: Living in Harmony with the Seasons</h3>
+          <p>Each season calls for different foods, routines, and practices. Seasonal alignment is the simplest and most powerful form of preventive medicine.</p>
+        </div>
+        <div class="k-tag">Seasonal Wellness</div>
+      </div>
+      <div class="k-article">
+        <div class="k-num">05</div>
+        <div class="k-content">
+          <h3>Herbs Every Home Should Know: Ashwagandha, Triphala & More</h3>
+          <p>A practical guide to the most widely applicable Ayurvedic herbs — what they do, who they suit, how to use them safely, and when to consult a Vaidya.</p>
+        </div>
+        <div class="k-tag">Herbs</div>
+      </div>
+      <div class="k-article">
+        <div class="k-num">06</div>
+        <div class="k-content">
+          <h3>Panchakarma: Ayurveda's Deep Cleansing Therapies Explained</h3>
+          <p>What Panchakarma actually involves, who it is appropriate for, how to prepare, and what to expect — demystified for patients seeking deep renewal.</p>
+        </div>
+        <div class="k-tag">Therapies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRAKRITI CONSULTATION -->
+<section class="prakriti" id="prakriti">
+  <div class="prakriti-bg-text">प्रकृति</div>
+  <div class="prakriti-inner">
+    <div>
+      <div class="section-label" style="color:var(--moss)">Deep Prakriti Consultation</div>
+      <h2 class="section-heading light">Understand Your Body<br>at its <em>Deepest Level</em></h2>
+      <p style="font-size:0.9rem;color:rgba(248,243,232,0.5);line-height:1.9;font-weight:300;margin-bottom:2.5rem;max-width:480px;">Our consultations go far beyond basic dosha quizzes. We examine your Prakriti, Vikriti (current imbalance), Agni, Srotas, and Manas Prakriti — delivering a complete picture of your health.</p>
+      <div class="prakriti-steps">
+        <div class="p-step">
+          <div class="p-num">01</div>
+          <div>
+            <h4>Initial Intake & History</h4>
+            <p>A thorough review of your health history, current complaints, lifestyle, diet, sleep, stress, and digestion — establishing the full context of your wellbeing.</p>
+          </div>
+        </div>
+        <div class="p-step">
+          <div class="p-num">02</div>
+          <div>
+            <h4>Prakriti-Vikriti Analysis</h4>
+            <p>Classical pulse diagnosis (Nadi Pariksha), tongue examination, eye observation, and constitutional questioning to map your true nature and current imbalances.</p>
+          </div>
+        </div>
+        <div class="p-step">
+          <div class="p-num">03</div>
+          <div>
+            <h4>Personalised Recommendations</h4>
+            <p>Diet charts tailored to your dosha and season, daily routine guidance, herbal suggestions, yoga and pranayama recommendations specific to your constitution.</p>
+          </div>
+        </div>
+        <div class="p-step">
+          <div class="p-num">04</div>
+          <div>
+            <h4>Written Wellness Plan</h4>
+            <p>You receive a detailed written report to keep — covering all recommendations in clear, practical language that integrates into real daily life.</p>
+          </div>
+        </div>
+        <div class="p-step">
+          <div class="p-num">05</div>
+          <div>
+            <h4>Follow-Up & Ongoing Support</h4>
+            <p>Health is a journey. Follow-up sessions track your progress, adjust recommendations, and deepen the work as your body responds and heals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="consult-card">
+      <h3>Book a Consultation</h3>
+      <p>All sessions available in-person and via secure video call. Available in English and Hindi.</p>
+      <div class="consult-plans">
+        <div class="c-plan featured">
+          <div>
+            <div class="c-plan-name">Deep Prakriti Assessment</div>
+            <div class="c-plan-sub">90 min · Full report included</div>
+          </div>
+          <div class="c-plan-price">₹2,500</div>
+        </div>
+        <div class="c-plan">
+          <div>
+            <div class="c-plan-name">Follow-Up Session</div>
+            <div class="c-plan-sub">45 min · Progress review</div>
+          </div>
+          <div class="c-plan-price">₹1,200</div>
+        </div>
+        <div class="c-plan">
+          <div>
+            <div class="c-plan-name">Seasonal Wellness Plan</div>
+            <div class="c-plan-sub">60 min · Diet & lifestyle reset</div>
+          </div>
+          <div class="c-plan-price">₹1,800</div>
+        </div>
+        <div class="c-plan">
+          <div>
+            <div class="c-plan-name">International Consultation</div>
+            <div class="c-plan-sub">75 min · Video · English</div>
+          </div>
+          <div class="c-plan-price">$45 USD</div>
+        </div>
+      </div>
+      <a href="#" class="btn-book">Book Your Session →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ASTROLOGY -->
+<section class="astrology" id="astrology">
+  <div class="stars-bg"></div>
+  <div class="astro-inner">
+    <div class="astro-visual">
+      <div class="zodiac-wheel">
+        <div class="zodiac-center">
+          <span>☽</span>
+          <small>Jyotish</small>
+        </div>
+      </div>
+    </div>
+    <div class="astro-content">
+      <div class="section-label">Free Astrology</div>
+      <h2 class="section-heading light">Jyotish &<br><em>Vedic Guidance</em></h2>
+      <p style="font-size:0.9rem;color:rgba(248,243,232,0.5);line-height:1.9;font-weight:300;margin-bottom:0.5rem;">Ayurveda and Jyotish (Vedic astrology) are sister sciences — together they reveal the karmic and constitutional roots of health, relationships, and life purpose. We offer free basic consultations to help you explore this ancient wisdom.</p>
+      <div class="astro-services">
+        <div class="a-service">
+          <div class="a-icon">♈</div>
+          <div>
+            <div class="a-name">Birth Chart Reading</div>
+            <div class="a-sub">Lagna, planetary positions & basic interpretation</div>
+          </div>
+          <div class="a-free">Free</div>
+        </div>
+        <div class="a-service">
+          <div class="a-icon">🌙</div>
+          <div>
+            <div class="a-name">Ayurvedic Astrology Integration</div>
+            <div class="a-sub">How your chart relates to your Prakriti & health</div>
+          </div>
+          <div class="a-free">Free</div>
+        </div>
+        <div class="a-service">
+          <div class="a-icon">⭐</div>
+          <div>
+            <div class="a-name">Career & Life Direction</div>
+            <div class="a-sub">Dharma, purpose and planetary timing</div>
+          </div>
+          <div class="a-free">Free</div>
+        </div>
+        <div class="a-service">
+          <div class="a-icon">💫</div>
+          <div>
+            <div class="a-name">Deep Jyotish Analysis</div>
+            <div class="a-sub">Full chart, Dasha system & remedies — extended session</div>
+          </div>
+          <div style="margin-left:auto;font-size:0.7rem;color:var(--gold);">₹800</div>
+        </div>
+      </div>
+      <a href="#" class="btn-gold" style="display:inline-block;margin-top:0.5rem;">Book Free Reading →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER COUNSELLING -->
+<section class="career" id="career">
+  <div class="career-header">
+    <div class="section-label">For Ayurveda Students</div>
+    <h2 class="section-heading">Build a Career<br>You Were <em>Born For</em></h2>
+    <p>The Ayurvedic world is vast and growing. Whether you are a BAMS student, a recent graduate, or a practitioner at a crossroads — we help you find your path and build it with confidence.</p>
+  </div>
+  <div class="career-tracks">
+    <div class="track">
+      <span class="track-icon">🏥</span>
+      <h3>Clinical Practice</h3>
+      <p>Setting up your own clinic, building a patient base, ethical billing, documentation, and the art of the Ayurvedic consultation room — from first appointment to thriving practice.</p>
+      <div class="track-tags">
+        <span class="ttag">Clinic Setup</span>
+        <span class="ttag">Patient Care</span>
+        <span class="ttag">Business</span>
+      </div>
+    </div>
+    <div class="track">
+      <span class="track-icon">🎓</span>
+      <h3>Academic & Teaching</h3>
+      <p>Pursuing PG, MD, PhD pathways in Ayurveda. Competitive exam preparation, research skills, academic writing, and how to become a respected teacher of this tradition.</p>
+      <div class="track-tags">
+        <span class="ttag">PG Admission</span>
+        <span class="ttag">Research</span>
+        <span class="ttag">Teaching</span>
+      </div>
+    </div>
+    <div class="track">
+      <span class="track-icon">🌐</span>
+      <h3>Wellness & Global Opportunities</h3>
+      <p>Retreat work, international wellness centres, corporate wellness, online consulting, content creation, and how to build a brand as a modern Ayurvedic expert globally.</p>
+      <div class="track-tags">
+        <span class="ttag">Online Practice</span>
+        <span class="ttag">Global</span>
+        <span class="ttag">Branding</span>
+      </div>
+    </div>
+  </div>
+  <div class="career-cta-row">
+    <a href="#" class="btn-gold">Schedule Career Session — Free First Call</a>
+  </div>
+</section>
+
+<!-- MEDICAL TOURISM -->
+<section class="tourism" id="tourism">
+  <div class="tourism-inner">
+    <div class="tourism-top">
+      <div>
+        <div class="section-label" style="color:var(--moss)">Medical Tourism</div>
+        <h2 class="section-heading light">Heal in the Land<br>Where it <em>Began</em></h2>
+      </div>
+      <p>India is the birthplace of Ayurveda — and experiencing authentic treatment here is transformative in ways no book or video can replicate. We guide international visitors through the entire journey: arrival, treatment, accommodation, and cultural immersion.</p>
+    </div>
+
+    <div class="tourism-packages">
+      <div class="t-pkg">
+        <span class="t-pkg-icon">🌿</span>
+        <h3>Rejuvenation Retreat</h3>
+        <p>Panchakarma cleansing therapies, personalised diet, yoga, meditation, and wellness consultations at a curated Kerala or Rishikesh centre.</p>
+        <span class="t-duration">7 – 14 Days</span>
+      </div>
+      <div class="t-pkg">
+        <span class="t-pkg-icon">💆</span>
+        <h3>Chronic Condition Program</h3>
+        <p>Structured therapeutic stay for conditions like arthritis, diabetes, skin disorders, or stress-related illness — combining Ayurvedic medicine with expert consultations.</p>
+        <span class="t-duration">14 – 28 Days</span>
+      </div>
+      <div class="t-pkg">
+        <span class="t-pkg-icon">🧘</span>
+        <h3>Immersion & Learning</h3>
+        <p>For practitioners and students — learn directly in India. Clinic shadowing, classical text study, cooking classes, herb garden visits, and practical training.</p>
+        <span class="t-duration">21 – 30 Days</span>
+      </div>
+    </div>
+
+    <div class="tourism-info">
+      <div class="t-info-item">
+        <span class="t-info-icon">✈️</span>
+        <h4>Arrival Support</h4>
+        <p>Airport pickup, accommodation guidance, sim card, local orientation</p>
+      </div>
+      <div class="t-info-item">
+        <span class="t-info-icon">🏨</span>
+        <h4>Curated Stay</h4>
+        <p>Vetted wellness centres, guesthouses, and Ayurvedic resorts</p>
+      </div>
+      <div class="t-info-item">
+        <span class="t-info-icon">🩺</span>
+        <h4>Expert Referrals</h4>
+        <p>Connections to trusted Vaidyas, therapists, and hospitals</p>
+      </div>
+      <div class="t-info-item">
+        <span class="t-info-icon">📋</span>
+        <h4>Full Documentation</h4>
+        <p>Treatment records, summaries, and follow-up plan for home country</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="#" class="btn-gold">Enquire About Your Visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS (COMING SOON) -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="coming-soon-badge">🌱 Coming Soon</div>
+    <div class="section-label" style="justify-content:center;">Herbal Products</div>
+    <h2 class="section-heading">Authentic Ayurvedic<br><em>Products</em></h2>
+    <p style="font-size:0.88rem;color:var(--muted);line-height:1.8;font-weight:300;">We are carefully curating a range of classical formulations, single herbs, and lifestyle products — sourced ethically, prepared traditionally, and recommended by our Vaidyas. Be the first to know when we launch.</p>
+    <div class="products-preview">
+      <div class="prod-ghost"><span>🫙</span><small>Herbal Churnas</small></div>
+      <div class="prod-ghost"><span>🧴</span><small>Medicated Oils</small></div>
+      <div class="prod-ghost"><span>🌿</span><small>Single Herbs</small></div>
+      <div class="prod-ghost"><span>🍵</span><small>Wellness Teas</small></div>
+    </div>
+    <div class="notify-form">
+      <input type="email" placeholder="Your email address">
+      <button>Notify Me</button>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="blog-header">
+    <div>
+      <div class="section-label">Awareness Articles</div>
+      <h2 class="section-heading">Medical Knowledge<br>for <em>Everyone</em></h2>
+      <div class="blog-cats">
+        <button class="blog-cat-btn active">All</button>
+        <button class="blog-cat-btn">Ayurveda</button>
+        <button class="blog-cat-btn">Women's Health</button>
+        <button class="blog-cat-btn">Digestion</button>
+        <button class="blog-cat-btn">Mental Wellness</button>
+        <button class="blog-cat-btn">Herbs & Diet</button>
+        <button class="blog-cat-btn">Children</button>
+      </div>
+    </div>
+    <a href="#" class="btn-gold" style="align-self:flex-start;">All Articles →</a>
+  </div>
+  <div class="blog-layout">
+    <div class="b-card main">
+      <span class="b-cat">Ayurveda Fundamentals</span>
+      <h3>The Science of Prakriti: Why One Medicine Doesn't Fit All</h3>
+      <p>Modern medicine's greatest strength — standardisation — is also its greatest limitation when it comes to chronic disease. Ayurveda's answer is a radically personalised approach grounded in your unique constitutional type. This guide explains exactly what Prakriti is, how it is assessed, and why it changes everything about how you eat, exercise, and heal.</p>
+      <a href="#" class="b-read-more">Read Article →</a>
+      <div class="b-meta">
+        <span>Dr. Vaidya Wellness Team</span>
+        <span class="dot"></span>
+        <span>10 min read</span>
+        <span class="dot"></span>
+        <span>April 2025</span>
+      </div>
+    </div>
+    <div class="b-card">
+      <span class="b-cat">Women's Health</span>
+      <h3>Ayurveda & the Female Cycle: A Deeper Understanding</h3>
+      <p>How Ayurveda views menstruation, fertility, and hormonal health — and practical wisdom for each phase.</p>
+      <div class="b-meta"><span>6 min read</span></div>
+    </div>
+    <div class="b-card">
+      <span class="b-cat">Mental Wellness</span>
+      <h3>Manas Prakriti: Your Psychological Constitution</h3>
+      <p>Beyond physical doshas — how Sattva, Rajas, and Tamas shape your mind, emotions, and mental health.</p>
+      <div class="b-meta"><span>8 min read</span></div>
+    </div>
+    <div class="b-card">
+      <span class="b-cat">Herbs & Diet</span>
+      <h3>Triphala: The Three Fruits That Transform Digestion</h3>
+      <p>Everything a patient needs to know about Ayurveda's most versatile formulation — safely and effectively.</p>
+      <div class="b-meta"><span>5 min read</span></div>
+    </div>
+    <div class="b-card">
+      <span class="b-cat">Children</span>
+      <h3>Raising Healthy Children the Ayurvedic Way</h3>
+      <p>Seasonal diet, sleep rhythms, herbal tonics, and immunity — Ayurvedic wisdom for modern parents.</p>
+      <div class="b-meta"><span>7 min read</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-header">
+    <div class="section-label" style="color:var(--moss)">Patient Stories</div>
+    <h2 class="section-heading light">Words from Our<br><em>Community</em></h2>
+  </div>
+  <div class="t-scroller">
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <blockquote>"The prakriti consultation was unlike anything I'd experienced. Within 20 minutes of listening, she understood patterns in my health that 10 years of doctor visits had missed. My digestion has transformed."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">M</div>
+        <div class="t-info">
+          <strong>Meera Krishnan</strong>
+          <span>Patient · Chennai</span>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <blockquote>"I came from Germany for a Panchakarma program and the guidance I received here — from finding the right centre to the follow-up protocol — made the entire experience safe, smooth, and deeply healing."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">H</div>
+        <div class="t-info">
+          <strong>Hannah Brauer</strong>
+          <span>Medical Tourist · Germany</span>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <blockquote>"The career counselling session gave me more clarity than two years of confusion after finishing my BAMS. I now know exactly which direction I'm building toward and why. Truly grateful."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">R</div>
+        <div class="t-info">
+          <strong>Rahul Sinha</strong>
+          <span>BAMS Graduate · Patna</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Wisdom in Your Inbox</h2>
+  <p>Monthly letters on Ayurveda, patient awareness, seasonal living, and upcoming events. Deeply written. Always free.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="Your email address">
+    <button>Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="f-brand">
+      <div class="logo-wrap">
+        <div class="logo-icon">🌿</div>
+        <div class="logo-text">Vaidya<span>Wellness</span></div>
+      </div>
+      <p>A sanctuary of Ayurvedic wisdom for patients, students, and seekers worldwide. Rooted in tradition. Open to all.</p>
+      <div class="socials">
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">ig</a>
+        <a class="social-btn" href="#">yt</a>
+        <a class="social-btn" href="#">wa</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Prakriti Consultation</a></li>
+        <li><a href="#">Ayurvedic Knowledge</a></li>
+        <li><a href="#">Free Astrology</a></li>
+        <li><a href="#">Career Counselling</a></li>
+        <li><a href="#">Medical Tourism</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Awareness Articles</a></li>
+        <li><a href="#">Dosha Self-Assessment</a></li>
+        <li><a href="#">Herb Guide</a></li>
+        <li><a href="#">Seasonal Guides</a></li>
+        <li><a href="#">Student Resources</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">Book Appointment</a></li>
+        <li><a href="#">WhatsApp Us</a></li>
+        <li><a href="#">Contact / Location</a></li>
+        <li><a href="#">For Foreigners</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <div class="footer-bottom">
+    <span>© 2025 VaidyaWellness. All rights reserved.</span>
+    <span>Made with 🪷 for the healing of all beings</span>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX - 6 + 'px';
+  cursor.style.top = e.clientY - 6 + 'px';
+  ring.style.left = e.clientX - 18 + 'px';
+  ring.style.top = e.clientY - 18 + 'px';
+});
+document.querySelectorAll('a,button,.track,.t-pkg,.k-article,.c-plan,.a-service,.dosha-pill').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2)'; ring.style.opacity = '0.15'; });
+  el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.opacity = '0.5'; });
+});
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Generate leaf particles
+const leavesEmojis = ['🌿','🍃','🌱','🪴','☘️'];
+const leavesBg = document.getElementById('leavesBg');
+for(let i = 0; i < 18; i++) {
+  const leaf = document.createElement('div');
+  leaf.className = 'leaf';
+  leaf.textContent = leavesEmojis[Math.floor(Math.random() * leavesEmojis.length)];
+  leaf.style.left = Math.random() * 100 + '%';
+  leaf.style.animationDuration = (12 + Math.random() * 20) + 's';
+  leaf.style.animationDelay = -(Math.random() * 30) + 's';
+  leaf.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+  leavesBg.appendChild(leaf);
+}
+
+// Zodiac wheel signs
+const signs = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+const wheel = document.querySelector('.zodiac-wheel');
+signs.forEach((sign, i) => {
+  const el = document.createElement('div');
+  el.style.cssText = `
+    position:absolute;
+    font-size:1rem;
+    color:rgba(212,168,67,0.45);
+    top:50%; left:50%;
+    transform: rotate(${i * 30}deg) translateY(-155px) rotate(-${i * 30}deg);
+    transform-origin: 0 0;
+  `;
+  el.textContent = sign;
+  wheel.appendChild(el);
+});
+
+// Blog category filter (UI only)
+document.querySelectorAll('.blog-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.blog-cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Scroll reveal (simple)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.k-article, .track, .t-pkg, .t-card, .b-card, .p-step').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
